@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /w/
+Disallow: /wiki/Special:
+Disallow: /wiki/Sanarşiv:Sayfa
+Allow: /wiki/
+Sitemap: https://sanarsiv.org/sitemap.xml
