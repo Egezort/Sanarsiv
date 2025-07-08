@@ -6,38 +6,76 @@
   <title>Sanarşiv – Dil seçin</title>
   <style>
     body {
+      margin: 0;
+      padding: 0;
       font-family: sans-serif;
+      background-color: #ffffff;
+      color: #202122;
       text-align: center;
-      padding: 50px;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 60px 20px;
+    }
+    .logo {
+      margin-bottom: 30px;
+    }
+    .logo img {
+      max-width: 160px;
+      height: auto;
     }
     h1 {
-      font-size: 28px;
+      font-size: 36px;
+      margin-bottom: 40px;
+      font-weight: normal;
     }
     .languages {
-      margin-top: 30px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
     }
-    .languages a {
-      display: inline-block;
-      margin: 15px;
-      padding: 12px 20px;
-      background-color: #f0f0f0;
-      color: #333;
+    .language-box {
+      width: 200px;
+      text-align: center;
+    }
+    .language-box a {
+      display: block;
+      font-size: 20px;
+      color: #3366cc;
       text-decoration: none;
-      border-radius: 6px;
-      font-size: 18px;
     }
-    .languages a:hover {
-      background-color: #d9e4ff;
+    .language-box a:hover {
+      text-decoration: underline;
+    }
+    .footer {
+      margin-top: 60px;
+      font-size: 14px;
+      color: #72777d;
     }
   </style>
 </head>
 <body>
-  <h1>Sanarşiv – Zəhmət olmasa dil seçin</h1>
-  <div class="languages">
-    <a href="https://az.sanarsiv.org">Azərbaycan dili</a>
-    <a href="https://tr.sanarsiv.org">Türkçe</a>
-    <a href="https://en.sanarsiv.org">English</a>
+  <div class="container">
+    <div class="logo">
+      <img src="https://static.wikitide.net/sanarsivwiki/1/14/Sanarsiv-logo.jpg" alt="Sanarşiv Logo">
+    </div>
+    <h1>Sanarşiv – Zəhmət olmasa dil seçin</h1>
+    <div class="languages">
+      <div class="language-box">
+        <a href="https://az.sanarsiv.org">Azərbaycan dili</a>
+      </div>
+      <div class="language-box">
+        <a href="https://tr.sanarsiv.org">Türkçe</a>
+      </div>
+      <div class="language-box">
+        <a href="https://en.sanarsiv.org">English</a>
+      </div>
+    </div>
+    <div class="footer">
+      Sanarşiv – Mədəniyyət və sənət ensiklopediyası
+    </div>
   </div>
-  <p style="margin-top: 40px; color: gray;">Sanarşiv – Mədəniyyət və sənət ensiklopediyası</p>
 </body>
 </html>
