@@ -112,21 +112,24 @@
           workInProgress: "İşlər davam edir",
           selectLanguageTitle: "Sanarşiv – Dil seçin",
           toggleTheme: "Mod dəyiş",
-          footer: "Sanarşiv – Azad incəsənət ensiklopediyası"
+          footer: "Sanarşiv – Azad incəsənət ensiklopediyası",
+          logo: "https://static.wikitide.net/sanarsivwiki/1/1f/Sanarchive_wordmark_az_%28new%29.svg"
         },
         tr: {
           articleSingular: "makale",
           workInProgress: "Çalışmalar devam ediyor",
           selectLanguageTitle: "Sanarşiv – Dil seçin",
           toggleTheme: "Temayı değiştir",
-          footer: "Sanarşiv – Özgür sanat ansiklopedisi"
+          footer: "Sanarşiv – Özgür sanat ansiklopedisi",
+          logo: "https://static.wikitide.net/sanarsivwiki/7/75/Sanarchive_logo_tr_%28new%29.svg"
         },
         en: {
           articleSingular: "article",
           workInProgress: "Work In Progress",
           selectLanguageTitle: "Sanarşiv – Select language",
           toggleTheme: "Toggle theme",
-          footer: "Sanarşiv – The free art encyclopedia"
+          footer: "Sanarşiv – The free art encyclopedia",
+          logo: "https://static.wikitide.net/sanarsivwiki/5/56/Sanarchive_logo_en_%28new%29.svg"
         }
       };
 
@@ -142,6 +145,11 @@
       const footer = document.querySelector('footer');
       if (footer) footer.textContent = translations[lang].footer;
 
+      const logoImg = document.querySelector('.logo img');
+      if (logoImg && translations[lang].logo) {
+        logoImg.src = translations[lang].logo;
+      }
+
       const langBoxes = document.querySelectorAll('.lang-box');
 
       langBoxes.forEach(box => {
@@ -155,7 +163,6 @@
 
         const code = match[1];
 
-        // Special case for English: always show "Yakında"
         if (code === 'en') {
           countDiv.textContent = "Yakında";
           return;
@@ -178,7 +185,6 @@
           });
       });
 
-      // Tema ayarı
       const userPref = localStorage.getItem('theme');
       const systemPref = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
       const theme = userPref || systemPref;
@@ -215,7 +221,7 @@
         <div class="article-count">...</div>
       </div>
       <div class="lang-box">
-        <a href="https://en.sanarsiv.org">English</a>
+        <a href="https://en.sanarsiv.org">İngilizce</a>
         <div class="article-count">...</div>
       </div>
     </div>
