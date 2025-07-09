@@ -32,7 +32,7 @@
     }
     .popular-langs {
       display: flex;
-      justify-content: center; /* Ortala */
+      justify-content: center;
       flex-wrap: wrap;
       gap: 40px;
       margin-bottom: 40px;
@@ -56,7 +56,6 @@
       color: #54595d;
       margin-top: 4px;
     }
-    /* Collapsible styles */
     details {
       max-width: 900px;
       margin: 0 auto 30px;
@@ -67,6 +66,7 @@
       font-size: 14px;
       color: #54595d;
       cursor: pointer;
+      text-align: left;
     }
     details summary {
       font-weight: 600;
@@ -74,6 +74,7 @@
       outline: none;
       list-style: none;
       user-select: none;
+      cursor: pointer;
     }
     details[open] summary::after {
       content: "▲";
@@ -121,6 +122,118 @@
       max-width: 900px;
     }
   </style>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Kullanıcının tarayıcı dilini al (ilk 2 karakter)
+      const userLang = navigator.language || navigator.userLanguage;
+      const langPrefix = userLang.substring(0, 2).toLowerCase();
+
+      // Çeviri metinleri
+      const translations = {
+        az: {
+          allLanguages: "Bütün dillər",
+          articleSingular: "məqalə",
+          articlePlural: "məqalə",
+          workInProgress: "İşlər davam edir",
+          selectLanguageTitle: "Sanarşiv – Dil seçin"
+        },
+        tr: {
+          allLanguages: "Tüm diller",
+          articleSingular: "makale",
+          articlePlural: "makale",
+          workInProgress: "Çalışmalar devam ediyor",
+          selectLanguageTitle: "Sanarşiv – Dil seçin"
+        },
+        en: {
+          allLanguages: "All languages",
+          articleSingular: "article",
+          articlePlural: "articles",
+          workInProgress: "Work In Progress",
+          selectLanguageTitle: "Sanarşiv – Select language"
+        },
+        de: {
+          allLanguages: "Alle Sprachen",
+          articleSingular: "Artikel",
+          articlePlural: "Artikel",
+          workInProgress: "In Arbeit",
+          selectLanguageTitle: "Sanarşiv – Sprache wählen"
+        },
+        fr: {
+          allLanguages: "Toutes les langues",
+          articleSingular: "article",
+          articlePlural: "articles",
+          workInProgress: "Travaux en cours",
+          selectLanguageTitle: "Sanarşiv – Choisir la langue"
+        },
+        ru: {
+          allLanguages: "Все языки",
+          articleSingular: "статья",
+          articlePlural: "статей",
+          workInProgress: "Работа в процессе",
+          selectLanguageTitle: "Sanarşив – Выберите язык"
+        },
+        es: {
+          allLanguages: "Todos los idiomas",
+          articleSingular: "artículo",
+          articlePlural: "artículos",
+          workInProgress: "Trabajo en progreso",
+          selectLanguageTitle: "Sanarşiv – Seleccione idioma"
+        },
+        fa: {
+          allLanguages: "تمام زبان‌ها",
+          articleSingular: "مقاله",
+          articlePlural: "مقالات",
+          workInProgress: "کار در حال انجام",
+          selectLanguageTitle: "Sanarşiv – انتخاب زبان"
+        }
+      };
+
+      // Geçerli dil; yoksa İngilizce default
+      const lang = translations[langPrefix] ? langPrefix : 'en';
+
+      // HTML lang attribute güncelle
+      document.documentElement.lang = lang;
+
+      // Sayfa başlığını çevir
+      document.title = translations[lang].selectLanguageTitle;
+
+      // Başlığı çevir
+      const h1 = document.querySelector('h1');
+      if (h1) {
+        h1.textContent = translations[lang].selectLanguageTitle;
+      }
+
+      // "Bütün dillər" metnini değiştir
+      const detailsSummary = document.querySelector('details > summary');
+      if (detailsSummary) {
+        detailsSummary.textContent = translations[lang].allLanguages;
+      }
+
+      // Tüm diller listesindeki makale sayıları ve durum metinleri
+      const langItems = document.querySelectorAll('.all-langs-list > [role="listitem"]');
+      langItems.forEach(item => {
+        const link = item.querySelector('a');
+        const countDiv = item.querySelector('.article-count-small');
+        if (!link || !countDiv) return;
+
+        const href = link.getAttribute('href');
+        const match = href.match(/\/\/([a-z]{2})\.sanarsiv\.org/);
+        if (!match) return;
+        const code = match[1];
+
+        // Sabit makale sayıları:
+        if (code === 'az') {
+          countDiv.textContent = "62 " + translations[lang].articleSingular;
+        } else if (code === 'tr') {
+          countDiv.textContent = "47 " + translations[lang].articleSingular;
+        } else {
+          // Diğer dillerde ilerleme durumu
+          countDiv.textContent = translations[lang].workInProgress;
+        }
+      });
+    });
+  </script>
 </head>
 <body>
   <div class="container">
