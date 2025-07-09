@@ -130,7 +130,6 @@
         }
       };
 
-      // Dil algılama
       const userLang = navigator.language || navigator.userLanguage;
       const langPrefix = userLang.substring(0, 2).toLowerCase();
       const lang = translations[langPrefix] ? langPrefix : 'en';
@@ -138,33 +137,38 @@
       document.title = translations[lang].selectLanguageTitle;
 
       const h1 = document.querySelector('h1');
-      if (h1) {
-        h1.textContent = translations[lang].selectLanguageTitle;
-      }
+      if (h1) h1.textContent = translations[lang].selectLanguageTitle;
 
       const footer = document.querySelector('footer');
-      if (footer) {
-        footer.textContent = translations[lang].footer;
-      }
-
-      const counts = { az: 62, tr: 47 };
+      if (footer) footer.textContent = translations[lang].footer;
 
       const langBoxes = document.querySelectorAll('.lang-box');
+
       langBoxes.forEach(box => {
         const link = box.querySelector('a');
         const countDiv = box.querySelector('.article-count');
         if (!link || !countDiv) return;
 
         const href = link.getAttribute('href');
-        const match = href.match(/\/\/([a-z]{2})\.sanarsiv\.org/);
+        const match = href.match(/^https?:\/\/([a-z]{2})\.sanarsiv\.org/);
         if (!match) return;
-        const code = match[1];
 
-        if (counts[code]) {
-          countDiv.textContent = counts[code] + " " + translations[lang].articleSingular;
-        } else {
-          countDiv.textContent = translations[lang].workInProgress;
-        }
+        const code = match[1];
+        const apiUrl = `https://${code}.sanarsiv.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json&origin=*`;
+
+        fetch(apiUrl)
+          .then(response => response.json())
+          .then(data => {
+            const articleCount = data?.query?.statistics?.articles;
+            if (articleCount && articleCount > 0) {
+              countDiv.textContent = `${articleCount} ${translations[lang].articleSingular}`;
+            } else {
+              countDiv.textContent = translations[lang].workInProgress;
+            }
+          })
+          .catch(() => {
+            countDiv.textContent = translations[lang].workInProgress;
+          });
       });
 
       // Tema ayarı
@@ -197,15 +201,15 @@
     <div class="popular-langs" aria-label="Ən çox məqaləyə sahib olan dillər">
       <div class="lang-box">
         <a href="https://az.sanarsiv.org">Azərbaycan dili</a>
-        <div class="article-count">62 məqalə</div>
+        <div class="article-count">...</div>
       </div>
       <div class="lang-box">
         <a href="https://tr.sanarsiv.org">Türkçe</a>
-        <div class="article-count">47 makale</div>
+        <div class="article-count">...</div>
       </div>
       <div class="lang-box">
         <a href="https://en.sanarsiv.org">English</a>
-        <div class="article-count">Work In Progress</div>
+        <div class="article-count">...</div>
       </div>
     </div>
   </div>
