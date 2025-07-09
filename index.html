@@ -154,6 +154,13 @@
         if (!match) return;
 
         const code = match[1];
+
+        // Special case for English: always show "Yakında"
+        if (code === 'en') {
+          countDiv.textContent = "Yakında";
+          return;
+        }
+
         const apiUrl = `https://${code}.sanarsiv.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json&origin=*`;
 
         fetch(apiUrl)
