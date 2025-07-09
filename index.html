@@ -5,31 +5,50 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Sanarşiv – Dil seçin</title>
   <style>
+    :root {
+      color-scheme: light dark;
+      --bg-light: #ffffff;
+      --text-light: #202122;
+      --bg-dark: #111111;
+      --text-dark: #f5f5f5;
+      --border-color: #ccc;
+    }
+
     body {
       margin: 0;
       font-family: sans-serif;
-      background-color: #fff;
-      color: #202122;
       display: flex;
       flex-direction: column;
       min-height: 100vh;
       align-items: center;
       padding: 40px 20px 60px;
+      background-color: var(--bg-light);
+      color: var(--text-light);
+      transition: background-color 0.3s, color 0.3s;
     }
+
+    body.dark {
+      background-color: var(--bg-dark);
+      color: var(--text-dark);
+    }
+
     .container {
       max-width: 900px;
       width: 100%;
       text-align: center;
     }
+
     .logo img {
       max-width: 160px;
       margin-bottom: 30px;
     }
+
     h1 {
       font-weight: normal;
       font-size: 36px;
       margin-bottom: 40px;
     }
+
     .popular-langs {
       display: flex;
       justify-content: center;
@@ -37,10 +56,12 @@
       gap: 40px;
       margin-bottom: 40px;
     }
+
     .lang-box {
       width: 180px;
       text-align: center;
     }
+
     .lang-box a {
       font-size: 20px;
       color: #3366cc;
@@ -48,21 +69,36 @@
       display: block;
       font-weight: 500;
     }
+
     .lang-box a:hover {
       text-decoration: underline;
     }
+
     .article-count {
       font-size: 13px;
-      color: #54595d;
       margin-top: 4px;
     }
+
+    .theme-toggle {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background-color: transparent;
+      border: 1px solid var(--border-color);
+      padding: 8px 12px;
+      font-size: 14px;
+      cursor: pointer;
+      border-radius: 4px;
+      color: inherit;
+      background-color: inherit;
+    }
+
     footer {
       font-size: 14px;
-      color: #72777d;
       text-align: center;
       margin-top: auto;
       padding-top: 20px;
-      border-top: 1px solid #ddd;
+      border-top: 1px solid var(--border-color);
       width: 100%;
       max-width: 900px;
     }
@@ -70,29 +106,34 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      const userLang = navigator.language || navigator.userLanguage;
-      const langPrefix = userLang.substring(0, 2).toLowerCase();
-
       const translations = {
         az: {
           articleSingular: "məqalə",
           workInProgress: "İşlər davam edir",
-          selectLanguageTitle: "Sanarşiv – Dil seçin"
+          selectLanguageTitle: "Sanarşiv – Dil seçin",
+          toggleTheme: "Mod dəyiş",
+          footer: "Sanarşiv – Azad incəsənət ensiklopediyası"
         },
         tr: {
           articleSingular: "makale",
           workInProgress: "Çalışmalar devam ediyor",
-          selectLanguageTitle: "Sanarşiv – Dil seçin"
+          selectLanguageTitle: "Sanarşiv – Dil seçin",
+          toggleTheme: "Temayı değiştir",
+          footer: "Sanarşiv – Özgür sanat ansiklopedisi"
         },
         en: {
           articleSingular: "article",
           workInProgress: "Work In Progress",
-          selectLanguageTitle: "Sanarşiv – Select language"
+          selectLanguageTitle: "Sanarşiv – Select language",
+          toggleTheme: "Toggle theme",
+          footer: "Sanarşiv – The free art encyclopedia"
         }
       };
 
+      // Dil algılama
+      const userLang = navigator.language || navigator.userLanguage;
+      const langPrefix = userLang.substring(0, 2).toLowerCase();
       const lang = translations[langPrefix] ? langPrefix : 'en';
-
       document.documentElement.lang = lang;
       document.title = translations[lang].selectLanguageTitle;
 
@@ -101,10 +142,12 @@
         h1.textContent = translations[lang].selectLanguageTitle;
       }
 
-      const counts = {
-        az: 62,
-        tr: 47
-      };
+      const footer = document.querySelector('footer');
+      if (footer) {
+        footer.textContent = translations[lang].footer;
+      }
+
+      const counts = { az: 62, tr: 47 };
 
       const langBoxes = document.querySelectorAll('.lang-box');
       langBoxes.forEach(box => {
@@ -115,18 +158,36 @@
         const href = link.getAttribute('href');
         const match = href.match(/\/\/([a-z]{2})\.sanarsiv\.org/);
         if (!match) return;
-
         const code = match[1];
+
         if (counts[code]) {
           countDiv.textContent = counts[code] + " " + translations[lang].articleSingular;
         } else {
           countDiv.textContent = translations[lang].workInProgress;
         }
       });
+
+      // Tema ayarı
+      const userPref = localStorage.getItem('theme');
+      const systemPref = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      const theme = userPref || systemPref;
+      document.body.classList.toggle('dark', theme === 'dark');
+
+      const themeButton = document.getElementById('theme-toggle');
+      if (themeButton) {
+        themeButton.textContent = translations[lang].toggleTheme;
+        themeButton.addEventListener('click', () => {
+          document.body.classList.toggle('dark');
+          const newTheme = document.body.classList.contains('dark') ? 'dark' : 'light';
+          localStorage.setItem('theme', newTheme);
+        });
+      }
     });
   </script>
 </head>
 <body>
+  <button id="theme-toggle" class="theme-toggle">Mod dəyiş</button>
+
   <div class="container">
     <div class="logo">
       <img src="https://static.wikitide.net/sanarsivwiki/1/14/Sanarsiv-logo.jpg" alt="Sanarşiv Logo" />
@@ -150,7 +211,7 @@
   </div>
 
   <footer>
-    Sanarşiv – Özgür sanat ansiklopedisi
+    Sanarşiv – Azad incəsənət ensiklopediyası
   </footer>
 </body>
 </html>
