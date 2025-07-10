@@ -248,6 +248,7 @@
         az: {
           articleSingular: "məqalə",
           workInProgress: "İşlər davam edir",
+          comingSoon: "Tezliklə",
           selectLanguageTitle: "Sanarşiv – Dil seçin",
           toggleTheme: "Mod dəyiş",
           footer: "Sanarşiv – Azad incəsənət ensiklopediyası",
@@ -258,6 +259,7 @@
         tr: {
           articleSingular: "makale",
           workInProgress: "Çalışmalar devam ediyor",
+          comingSoon: "Yakında",
           selectLanguageTitle: "Sanarşiv – Dil seçin",
           toggleTheme: "Temayı değiştir",
           footer: "Sanarşiv – Özgür sanat ansiklopedisi",
@@ -268,6 +270,7 @@
         en: {
           articleSingular: "article",
           workInProgress: "Work In Progress",
+          comingSoon: "Coming soon",
           selectLanguageTitle: "Sanarşiv – Select language",
           toggleTheme: "Toggle theme",
           footer: "Sanarşiv – The free art encyclopedia",
@@ -319,7 +322,7 @@
         const code = match[1];
 
         if (code === 'en') {
-          countDiv.textContent = "Yakında";
+          countDiv.textContent = translations[lang].comingSoon;
           return;
         }
 
