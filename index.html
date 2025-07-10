@@ -181,7 +181,7 @@
       font-size: 13px;
       color: var(--desc-color-light);
       line-height: 1.3;
-      min-height: 38px; /* prevent jump on load */
+      min-height: 38px;
       white-space: normal;
     }
 
@@ -239,7 +239,8 @@
   </div>
 
   <footer>
-    Sanarşiv – Azad incəsənət ensiklopediyası
+    <div id="footer-text">Sanarşiv – Azad incəsənət ensiklopediyası</div>
+    <div id="copyright-text">© 2025 Sanarşiv Vakfı. Tüm hakları saklıdır.</div>
   </footer>
 
   <script>
@@ -252,6 +253,7 @@
           selectLanguageTitle: "Sanarşiv – Dil seçin",
           toggleTheme: "Mod dəyiş",
           footer: "Sanarşiv – Azad incəsənət ensiklopediyası",
+          copyright: "© 2025 Sanarşiv Fondu. Bütün hüquqlar qorunur.",
           logo: "https://static.wikitide.net/sanarsivwiki/1/1f/Sanarchive_wordmark_az_%28new%29.svg",
           sisterTitle: "Qardaş layihələr",
           sandataDesc: "Açıq mədəniyyət və məlumat platforması"
@@ -263,6 +265,7 @@
           selectLanguageTitle: "Sanarşiv – Dil seçin",
           toggleTheme: "Temayı değiştir",
           footer: "Sanarşiv – Özgür sanat ansiklopedisi",
+          copyright: "© 2025 Sanarşiv Vakfı. Tüm hakları saklıdır.",
           logo: "https://static.wikitide.net/sanarsivwiki/7/75/Sanarchive_logo_tr_%28new%29.svg",
           sisterTitle: "Kardeş projeler",
           sandataDesc: "Açık kültür ve veri platformu"
@@ -274,6 +277,7 @@
           selectLanguageTitle: "Sanarşiv – Select language",
           toggleTheme: "Toggle theme",
           footer: "Sanarşiv – The free art encyclopedia",
+          copyright: "© 2025 Sanarchive Foundation. All rights reserved.",
           logo: "https://static.wikitide.net/sanarsivwiki/5/56/Sanarchive_logo_en_%28new%29.svg",
           sisterTitle: "Sister projects",
           sandataDesc: "Open culture and data platform"
@@ -292,8 +296,11 @@
       if (h1) h1.textContent = translations[lang].selectLanguageTitle;
 
       // Footer
-      const footer = document.querySelector('footer');
-      if (footer) footer.textContent = translations[lang].footer;
+      const footerText = document.getElementById('footer-text');
+      if (footerText) footerText.textContent = translations[lang].footer;
+
+      const copyright = document.getElementById('copyright-text');
+      if (copyright) copyright.textContent = translations[lang].copyright;
 
       // Logo
       const logoImg = document.querySelector('.logo img');
