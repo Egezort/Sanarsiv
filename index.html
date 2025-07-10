@@ -138,15 +138,19 @@
 
     .sister-item {
       max-width: 140px;
-      text-align: center;
+      text-align: left;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
     }
 
     .sister-link {
       display: flex;
-      flex-direction: column;
       align-items: center;
       text-decoration: none;
       color: var(--link-color);
+      gap: 8px;
+      flex-shrink: 0;
     }
 
     .sister-link:hover {
@@ -154,17 +158,23 @@
     }
 
     .sister-icon {
-      width: 36px;
-      height: 36px;
-      margin-bottom: 6px;
-      fill: var(--link-color);
-      /* if svg inline */
+      width: 24px;
+      height: 24px;
+      flex-shrink: 0;
+    }
+
+    .sister-text {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-width: 0;
     }
 
     .sister-name {
       font-weight: bold;
       font-size: 14px;
-      margin-bottom: 4px;
+      margin-bottom: 2px;
+      white-space: nowrap;
     }
 
     .sister-desc {
@@ -172,6 +182,7 @@
       color: var(--desc-color-light);
       line-height: 1.3;
       min-height: 38px; /* prevent jump on load */
+      white-space: normal;
     }
 
     body.dark .sister-desc {
@@ -209,12 +220,19 @@
       <ul class="sister-list" role="list">
         <li class="sister-item">
           <a href="https://sandata.org" class="sister-link" target="_blank" rel="noopener">
-            <svg class="sister-icon" viewBox="0 0 24 24" xmlns="https://static.wikitide.net/sanarsivwiki/6/6a/Sandata_logo_with_wordmark.svg" aria-hidden="true" focusable="false">
-              <path d="M4 4H20V6H4V4ZM4 9H20V11H4V9ZM4 14H20V16H4V14ZM4 19H14V21H4V19Z"/>
-            </svg>
-            <span class="sister-name">Sandata</span>
+            <img
+              src="https://static.wikitide.net/sanarsivwiki/6/6a/Sandata_logo_with_wordmark.svg"
+              alt="Sandata Logo"
+              class="sister-icon"
+              width="24"
+              height="24"
+              loading="lazy"
+            />
+            <div class="sister-text">
+              <span class="sister-name">Sandata</span>
+              <span class="sister-desc" id="sandata-desc">Açık kültür ve veri platformu</span>
+            </div>
           </a>
-          <div class="sister-desc" id="sandata-desc">Açık kültür ve veri platformu</div>
         </li>
       </ul>
     </div>
