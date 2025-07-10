@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Sanarşiv – Dil seçin</title>
   <style>
+    /* ... önceki stiller burada aynı kalacak ... */
     :root {
       color-scheme: light dark;
       --bg-light: #fff;
@@ -41,61 +42,7 @@
       text-align: center;
     }
 
-    .logo img {
-      max-width: 160px;
-      margin-bottom: 30px;
-    }
-
-    h1 {
-      font-weight: normal;
-      font-size: 36px;
-      margin-bottom: 40px;
-    }
-
-    .popular-langs {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 40px;
-      margin-bottom: 40px;
-    }
-
-    .lang-box {
-      width: 180px;
-      text-align: center;
-    }
-
-    .lang-box a {
-      font-size: 20px;
-      color: var(--link-color);
-      text-decoration: none;
-      display: block;
-      font-weight: 500;
-    }
-
-    .lang-box a:hover {
-      text-decoration: underline;
-    }
-
-    .article-count {
-      font-size: 13px;
-      margin-top: 4px;
-    }
-
-    .theme-toggle {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      background-color: transparent;
-      border: 1px solid var(--border-color);
-      padding: 8px 12px;
-      font-size: 14px;
-      cursor: pointer;
-      border-radius: 4px;
-      color: inherit;
-      background-color: inherit;
-    }
-
+    /* Footer ve copyright */
     footer {
       font-size: 14px;
       text-align: center;
@@ -104,90 +51,24 @@
       border-top: 1px solid var(--border-color);
       width: 100%;
       max-width: 900px;
-      flex-shrink: 0;
     }
 
-    /* --- Wikipedia Sister Projects Style --- */
-    .sister-projects-box {
-      margin-top: 60px;
-      padding: 20px 0 0 0;
-      border-top: 1px solid var(--border-color);
-    }
-
-    .sister-projects-box h2 {
-      font-size: 18px;
-      margin-bottom: 12px;
-      font-weight: normal;
-      text-align: center;
-      color: var(--text-light);
-    }
-
-    body.dark .sister-projects-box h2 {
-      color: var(--text-dark);
-    }
-
-    .sister-list {
-      list-style: none;
-      padding: 0;
-      margin: 0 auto;
-      display: flex;
-      justify-content: center;
-      gap: 40px;
-      flex-wrap: wrap;
-      max-width: 500px;
-    }
-
-    .sister-item {
-      max-width: 140px;
-      text-align: left;
-      display: flex;
-      align-items: flex-start;
-      gap: 8px;
-    }
-
-    .sister-link {
-      display: flex;
-      align-items: center;
-      text-decoration: none;
-      color: var(--link-color);
-      gap: 8px;
-      flex-shrink: 0;
-    }
-
-    .sister-link:hover {
-      text-decoration: underline;
-    }
-
-    .sister-icon {
-      width: 24px;
-      height: 24px;
-      flex-shrink: 0;
-    }
-
-    .sister-text {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      min-width: 0;
-    }
-
-    .sister-name {
-      font-weight: bold;
-      font-size: 14px;
-      margin-bottom: 2px;
-      white-space: nowrap;
-    }
-
-    .sister-desc {
-      font-size: 13px;
+    .copyright {
+      font-size: 12px;
       color: var(--desc-color-light);
-      line-height: 1.3;
-      min-height: 38px; /* prevent jump on load */
-      white-space: normal;
+      margin-top: 6px;
     }
 
-    body.dark .sister-desc {
+    body.dark .copyright {
       color: var(--desc-color-dark);
+    }
+
+    a.cc-link {
+      color: var(--link-color);
+      text-decoration: none;
+    }
+    a.cc-link:hover {
+      text-decoration: underline;
     }
   </style>
 </head>
@@ -240,8 +121,8 @@
   </div>
 
   <footer>
-    Sanarşiv – Azad incəsənət ensiklopediyası
-    <div id="license-text" style="margin-top: 1em; font-size: 0.9em; color: #555;"></div>
+    <div id="footer-text"></div>
+    <div class="copyright" id="copyright-text"></div>
   </footer>
 
   <script>
@@ -257,7 +138,7 @@
           logo: "https://static.wikitide.net/sanarsivwiki/1/1f/Sanarchive_wordmark_az_%28new%29.svg",
           sisterTitle: "Qardaş layihələr",
           sandataDesc: "Açıq mədəniyyət və məlumat platforması",
-          licenseText: `Bu səhifə <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.az" target="_blank" rel="license noopener">Creative Commons Atıf-EyniLisenziya ilə Paylaş 4.0</a> lisenziyası altındadır. <strong>Yalnızca Sanarşiv adı və loqosu</strong> qeydiyyatdan keçmiş ticarət markalarıdır.`
+          copyright: 'Bu səhifə <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.tr" class="cc-link" target="_blank" rel="noopener noreferrer">Creative Commons Attribution-ShareAlike 4.0</a> lisenziyası altındadır. Yalnız Sanarşiv adı və loqosu qeydiyyatdan keçmiş markalardır.'
         },
         tr: {
           articleSingular: "makale",
@@ -269,7 +150,7 @@
           logo: "https://static.wikitide.net/sanarsivwiki/7/75/Sanarchive_logo_tr_%28new%29.svg",
           sisterTitle: "Kardeş projeler",
           sandataDesc: "Açık kültür ve veri platformu",
-          licenseText: `Bu sayfa <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.tr" target="_blank" rel="license noopener">Creative Commons Atıf-AynıLisanslaPaylaş 4.0</a> lisansı altındadır. <strong>Yalnızca Sanarşiv ismi ve logosu</strong> tescilli markalardır.`
+          copyright: 'Bu sayfa <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.tr" class="cc-link" target="_blank" rel="noopener noreferrer">Creative Commons Atıf-AynıLisanslaPaylaş 4.0</a> lisansı altındadır. Yalnızca Sanarşiv ismi ve logosu tescilli markalardır.'
         },
         en: {
           articleSingular: "article",
@@ -281,51 +162,94 @@
           logo: "https://static.wikitide.net/sanarsivwiki/5/56/Sanarchive_logo_en_%28new%29.svg",
           sisterTitle: "Sister projects",
           sandataDesc: "Open culture and data platform",
-          licenseText: `This page is licensed under the <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="license noopener">Creative Commons Attribution-ShareAlike 4.0</a> license. <strong>Only the name and logo of Sanarchive</strong> are registered trademarks.`
+          copyright: 'This page is licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.tr" class="cc-link" target="_blank" rel="noopener noreferrer">Creative Commons Attribution-ShareAlike 4.0</a>. Only the Sanarşiv name and logo are registered trademarks.'
         }
       };
 
-      const userLang = navigator.language || navigator.userLanguage;
-      let lang = 'az'; // default
+      const userLang = navigator.language || navigator.userLanguage || 'en';
+      const langCode = userLang.substring(0, 2).toLowerCase();
+      const lang = translations[langCode] ? langCode : 'en';
 
-      if (userLang.startsWith('tr')) lang = 'tr';
-      else if (userLang.startsWith('en')) lang = 'en';
+      document.documentElement.lang = lang;
+      document.title = translations[lang].selectLanguageTitle;
 
-      // Set license text
-      const licenseTextDiv = document.getElementById('license-text');
-      if (licenseTextDiv) {
-        licenseTextDiv.innerHTML = translations[lang].licenseText;
+      // Header title
+      const h1 = document.querySelector('h1');
+      if (h1) h1.textContent = translations[lang].selectLanguageTitle;
+
+      // Footer text
+      const footerText = document.getElementById('footer-text');
+      if (footerText) footerText.textContent = translations[lang].footer;
+
+      // Logo
+      const logoImg = document.querySelector('.logo img');
+      if (logoImg && translations[lang].logo) {
+        logoImg.src = translations[lang].logo;
       }
 
-      // Set sister projects text
+      // Sister projects title and desc
       const sisterTitle = document.getElementById('sister-title');
       if (sisterTitle) sisterTitle.textContent = translations[lang].sisterTitle;
 
-      // Set sandata description
       const sandataDesc = document.getElementById('sandata-desc');
       if (sandataDesc) sandataDesc.textContent = translations[lang].sandataDesc;
 
-      // Theme toggle
-      const themeToggleBtn = document.getElementById('theme-toggle');
-      const body = document.body;
+      // Language article counts
+      const langBoxes = document.querySelectorAll('.lang-box');
+      langBoxes.forEach(box => {
+        const link = box.querySelector('a');
+        const countDiv = box.querySelector('.article-count');
+        if (!link || !countDiv) return;
 
-      // Load saved theme
-      const savedTheme = localStorage.getItem('theme');
-      if (savedTheme === 'dark') {
-        body.classList.add('dark');
-      }
+        const href = link.getAttribute('href');
+        const match = href.match(/^https?:\/\/([a-z]{2})\.sanarsiv\.org/);
+        if (!match) return;
 
-      themeToggleBtn.addEventListener('click', () => {
-        body.classList.toggle('dark');
-        const isDark = body.classList.contains('dark');
-        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        const code = match[1];
+
+        if (code === 'en') {
+          countDiv.textContent = translations[lang].comingSoon;
+          return;
+        }
+
+        const apiUrl = `https://${code}.sanarsiv.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json&origin=*`;
+
+        fetch(apiUrl)
+          .then(response => response.json())
+          .then(data => {
+            const articleCount = data?.query?.statistics?.articles;
+            if (articleCount && articleCount > 0) {
+              countDiv.textContent = `${articleCount} ${translations[lang].articleSingular}`;
+            } else {
+              countDiv.textContent = translations[lang].workInProgress;
+            }
+          })
+          .catch(() => {
+            countDiv.textContent = translations[lang].workInProgress;
+          });
       });
 
-      // Set button text
-      themeToggleBtn.textContent = translations[lang].toggleTheme;
+      // Theme toggle
+      const userPref = localStorage.getItem('theme');
+      const systemPref = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      const theme = userPref || systemPref;
+      document.body.classList.toggle('dark', theme === 'dark');
 
-      // Set document title
-      document.title = translations[lang].selectLanguageTitle;
+      const themeButton = document.getElementById('theme-toggle');
+      if (themeButton) {
+        themeButton.textContent = translations[lang].toggleTheme;
+        themeButton.addEventListener('click', () => {
+          document.body.classList.toggle('dark');
+          const newTheme = document.body.classList.contains('dark') ? 'dark' : 'light';
+          localStorage.setItem('theme', newTheme);
+        });
+      }
+
+      // Telif hakkı HTML olarak ekle
+      const copyrightText = document.getElementById('copyright-text');
+      if (copyrightText) {
+        copyrightText.innerHTML = translations[lang].copyright;
+      }
     });
   </script>
 </body>
