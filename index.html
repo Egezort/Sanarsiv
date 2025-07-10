@@ -93,6 +93,64 @@
       background-color: inherit;
     }
 
+    .sister-projects {
+      margin-top: 60px;
+      max-width: 600px;
+      text-align: left;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .sister-projects h2 {
+      font-size: 22px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .project-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      background-color: #f0f0f0;
+      padding: 16px;
+      border-radius: 8px;
+    }
+
+    body.dark .project-item {
+      background-color: #1e1e1e;
+    }
+
+    .project-icon svg {
+      flex-shrink: 0;
+      color: #3366cc;
+    }
+
+    .project-content {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project-link {
+      font-size: 18px;
+      font-weight: bold;
+      color: #3366cc;
+      text-decoration: none;
+      margin-bottom: 4px;
+    }
+
+    .project-link:hover {
+      text-decoration: underline;
+    }
+
+    .project-desc {
+      font-size: 14px;
+      color: #555;
+    }
+
+    body.dark .project-desc {
+      color: #ccc;
+    }
+
     footer {
       font-size: 14px;
       text-align: center;
@@ -113,7 +171,9 @@
           selectLanguageTitle: "Sanarşiv – Dil seçin",
           toggleTheme: "Mod dəyiş",
           footer: "Sanarşiv – Azad incəsənət ensiklopediyası",
-          logo: "https://static.wikitide.net/sanarsivwiki/1/1f/Sanarchive_wordmark_az_%28new%29.svg"
+          logo: "https://static.wikitide.net/sanarsivwiki/1/1f/Sanarchive_wordmark_az_%28new%29.svg",
+          sisterProjectsTitle: "Qardaş layihələr",
+          sandataDesc: "Açıq mədəniyyət və məlumat platforması"
         },
         tr: {
           articleSingular: "makale",
@@ -121,7 +181,9 @@
           selectLanguageTitle: "Sanarşiv – Dil seçin",
           toggleTheme: "Temayı değiştir",
           footer: "Sanarşiv – Özgür sanat ansiklopedisi",
-          logo: "https://static.wikitide.net/sanarsivwiki/7/75/Sanarchive_logo_tr_%28new%29.svg"
+          logo: "https://static.wikitide.net/sanarsivwiki/7/75/Sanarchive_logo_tr_%28new%29.svg",
+          sisterProjectsTitle: "Kardeş projeler",
+          sandataDesc: "Açık kültür ve veri platformu"
         },
         en: {
           articleSingular: "article",
@@ -129,7 +191,9 @@
           selectLanguageTitle: "Sanarşiv – Select language",
           toggleTheme: "Toggle theme",
           footer: "Sanarşiv – The free art encyclopedia",
-          logo: "https://static.wikitide.net/sanarsivwiki/5/56/Sanarchive_logo_en_%28new%29.svg"
+          logo: "https://static.wikitide.net/sanarsivwiki/5/56/Sanarchive_logo_en_%28new%29.svg",
+          sisterProjectsTitle: "Sister projects",
+          sandataDesc: "Open culture and data platform"
         }
       };
 
@@ -199,6 +263,16 @@
           localStorage.setItem('theme', newTheme);
         });
       }
+
+      const sisterTitle = document.getElementById('sister-title');
+      if (sisterTitle) {
+        sisterTitle.textContent = translations[lang].sisterProjectsTitle;
+      }
+
+      const sandataDesc = document.getElementById('sandata-desc');
+      if (sandataDesc) {
+        sandataDesc.textContent = translations[lang].sandataDesc;
+      }
     });
   </script>
 </head>
@@ -211,7 +285,7 @@
     </div>
     <h1>Sanarşiv – Dil seçin</h1>
 
-    <div class="popular-langs" aria-label="Ən çox məqaləyə sahib olan dillər">
+    <div class="popular-langs" aria-label="Diller">
       <div class="lang-box">
         <a href="https://az.sanarsiv.org">Azərbaycan dili</a>
         <div class="article-count">...</div>
@@ -223,6 +297,21 @@
       <div class="lang-box">
         <a href="https://en.sanarsiv.org">İngilizce</a>
         <div class="article-count">...</div>
+      </div>
+    </div>
+
+    <div class="sister-projects">
+      <h2 id="sister-title">Kardeş projeler</h2>
+      <div class="project-item">
+        <div class="project-icon">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="currentColor" xmlns="https://static.wikitide.net/sanarsivwiki/6/6a/Sandata_logo_with_wordmark.svg">
+            <path d="M4 4H20V6H4V4ZM4 9H20V11H4V9ZM4 14H20V16H4V14ZM4 19H14V21H4V19Z"/>
+          </svg>
+        </div>
+        <div class="project-content">
+          <a href="https://sandata.org" class="project-link">Sandata</a>
+          <div class="project-desc" id="sandata-desc">Özgür Sanat veri merkezi</div>
+        </div>
       </div>
     </div>
   </div>
