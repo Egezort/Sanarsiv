@@ -7,24 +7,27 @@
   <style>
     :root {
       color-scheme: light dark;
-      --bg-light: #ffffff;
+      --bg-light: #fff;
       --text-light: #202122;
-      --bg-dark: #111111;
+      --bg-dark: #111;
       --text-dark: #f5f5f5;
       --border-color: #ccc;
+      --link-color: #3366cc;
+      --desc-color-light: #555;
+      --desc-color-dark: #aaa;
     }
 
     body {
       margin: 0;
       font-family: sans-serif;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-      align-items: center;
-      padding: 40px 20px 60px;
       background-color: var(--bg-light);
       color: var(--text-light);
       transition: background-color 0.3s, color 0.3s;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px 60px;
     }
 
     body.dark {
@@ -64,7 +67,7 @@
 
     .lang-box a {
       font-size: 20px;
-      color: #3366cc;
+      color: var(--link-color);
       text-decoration: none;
       display: block;
       font-weight: 500;
@@ -93,64 +96,6 @@
       background-color: inherit;
     }
 
-    .sister-projects {
-      margin-top: 60px;
-      max-width: 600px;
-      text-align: left;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .sister-projects h2 {
-      font-size: 22px;
-      margin-bottom: 20px;
-      text-align: center;
-    }
-
-    .project-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 16px;
-      background-color: #f0f0f0;
-      padding: 16px;
-      border-radius: 8px;
-    }
-
-    body.dark .project-item {
-      background-color: #1e1e1e;
-    }
-
-    .project-icon svg {
-      flex-shrink: 0;
-      color: #3366cc;
-    }
-
-    .project-content {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .project-link {
-      font-size: 18px;
-      font-weight: bold;
-      color: #3366cc;
-      text-decoration: none;
-      margin-bottom: 4px;
-    }
-
-    .project-link:hover {
-      text-decoration: underline;
-    }
-
-    .project-desc {
-      font-size: 14px;
-      color: #555;
-    }
-
-    body.dark .project-desc {
-      color: #ccc;
-    }
-
     footer {
       font-size: 14px;
       text-align: center;
@@ -160,7 +105,124 @@
       width: 100%;
       max-width: 900px;
     }
+
+    /* --- Wikipedia Sister Projects Style --- */
+    .sister-projects-box {
+      margin-top: 60px;
+      padding: 20px 0 0 0;
+      border-top: 1px solid var(--border-color);
+    }
+
+    .sister-projects-box h2 {
+      font-size: 18px;
+      margin-bottom: 12px;
+      font-weight: normal;
+      text-align: center;
+      color: var(--text-light);
+    }
+
+    body.dark .sister-projects-box h2 {
+      color: var(--text-dark);
+    }
+
+    .sister-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+      max-width: 500px;
+    }
+
+    .sister-item {
+      max-width: 140px;
+      text-align: center;
+    }
+
+    .sister-link {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-decoration: none;
+      color: var(--link-color);
+    }
+
+    .sister-link:hover {
+      text-decoration: underline;
+    }
+
+    .sister-icon {
+      width: 36px;
+      height: 36px;
+      margin-bottom: 6px;
+      fill: var(--link-color);
+      /* if svg inline */
+    }
+
+    .sister-name {
+      font-weight: bold;
+      font-size: 14px;
+      margin-bottom: 4px;
+    }
+
+    .sister-desc {
+      font-size: 13px;
+      color: var(--desc-color-light);
+      line-height: 1.3;
+      min-height: 38px; /* prevent jump on load */
+    }
+
+    body.dark .sister-desc {
+      color: var(--desc-color-dark);
+    }
   </style>
+</head>
+<body>
+  <button id="theme-toggle" class="theme-toggle">Mod dəyiş</button>
+
+  <div class="container">
+    <div class="logo">
+      <img src="https://static.wikitide.net/sanarsivwiki/7/75/Sanarchive_logo_tr_%28new%29.svg" alt="Sanarşiv Logo" />
+    </div>
+    <h1>Sanarşiv – Dil seçin</h1>
+
+    <div class="popular-langs" aria-label="Diller">
+      <div class="lang-box">
+        <a href="https://az.sanarsiv.org">Azərbaycan dili</a>
+        <div class="article-count">...</div>
+      </div>
+      <div class="lang-box">
+        <a href="https://tr.sanarsiv.org">Türkçe</a>
+        <div class="article-count">...</div>
+      </div>
+      <div class="lang-box">
+        <a href="https://en.sanarsiv.org">İngilizce</a>
+        <div class="article-count">...</div>
+      </div>
+    </div>
+
+    <!-- Sister projects (Wikipedia style) -->
+    <div class="sister-projects-box">
+      <h2 id="sister-title">Kardeş projeler</h2>
+      <ul class="sister-list" role="list">
+        <li class="sister-item">
+          <a href="https://sandata.org" class="sister-link" target="_blank" rel="noopener">
+            <svg class="sister-icon" viewBox="0 0 24 24" xmlns="https://static.wikitide.net/sanarsivwiki/6/6a/Sandata_logo_with_wordmark.svg" aria-hidden="true" focusable="false">
+              <path d="M4 4H20V6H4V4ZM4 9H20V11H4V9ZM4 14H20V16H4V14ZM4 19H14V21H4V19Z"/>
+            </svg>
+            <span class="sister-name">Sandata</span>
+          </a>
+          <div class="sister-desc" id="sandata-desc">Açık kültür ve veri platformu</div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <footer>
+    Sanarşiv – Azad incəsənət ensiklopediyası
+  </footer>
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
@@ -172,7 +234,7 @@
           toggleTheme: "Mod dəyiş",
           footer: "Sanarşiv – Azad incəsənət ensiklopediyası",
           logo: "https://static.wikitide.net/sanarsivwiki/1/1f/Sanarchive_wordmark_az_%28new%29.svg",
-          sisterProjectsTitle: "Qardaş layihələr",
+          sisterTitle: "Qardaş layihələr",
           sandataDesc: "Açıq mədəniyyət və məlumat platforması"
         },
         tr: {
@@ -182,7 +244,7 @@
           toggleTheme: "Temayı değiştir",
           footer: "Sanarşiv – Özgür sanat ansiklopedisi",
           logo: "https://static.wikitide.net/sanarsivwiki/7/75/Sanarchive_logo_tr_%28new%29.svg",
-          sisterProjectsTitle: "Kardeş projeler",
+          sisterTitle: "Kardeş projeler",
           sandataDesc: "Açık kültür ve veri platformu"
         },
         en: {
@@ -192,30 +254,41 @@
           toggleTheme: "Toggle theme",
           footer: "Sanarşiv – The free art encyclopedia",
           logo: "https://static.wikitide.net/sanarsivwiki/5/56/Sanarchive_logo_en_%28new%29.svg",
-          sisterProjectsTitle: "Sister projects",
+          sisterTitle: "Sister projects",
           sandataDesc: "Open culture and data platform"
         }
       };
 
-      const userLang = navigator.language || navigator.userLanguage;
-      const langPrefix = userLang.substring(0, 2).toLowerCase();
-      const lang = translations[langPrefix] ? langPrefix : 'en';
+      const userLang = navigator.language || navigator.userLanguage || 'en';
+      const langCode = userLang.substring(0, 2).toLowerCase();
+      const lang = translations[langCode] ? langCode : 'en';
+
       document.documentElement.lang = lang;
       document.title = translations[lang].selectLanguageTitle;
 
+      // Header title
       const h1 = document.querySelector('h1');
       if (h1) h1.textContent = translations[lang].selectLanguageTitle;
 
+      // Footer
       const footer = document.querySelector('footer');
       if (footer) footer.textContent = translations[lang].footer;
 
+      // Logo
       const logoImg = document.querySelector('.logo img');
       if (logoImg && translations[lang].logo) {
         logoImg.src = translations[lang].logo;
       }
 
-      const langBoxes = document.querySelectorAll('.lang-box');
+      // Sister projects title and desc
+      const sisterTitle = document.getElementById('sister-title');
+      if (sisterTitle) sisterTitle.textContent = translations[lang].sisterTitle;
 
+      const sandataDesc = document.getElementById('sandata-desc');
+      if (sandataDesc) sandataDesc.textContent = translations[lang].sandataDesc;
+
+      // Language article counts
+      const langBoxes = document.querySelectorAll('.lang-box');
       langBoxes.forEach(box => {
         const link = box.querySelector('a');
         const countDiv = box.querySelector('.article-count');
@@ -249,6 +322,7 @@
           });
       });
 
+      // Theme toggle
       const userPref = localStorage.getItem('theme');
       const systemPref = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
       const theme = userPref || systemPref;
@@ -263,61 +337,7 @@
           localStorage.setItem('theme', newTheme);
         });
       }
-
-      const sisterTitle = document.getElementById('sister-title');
-      if (sisterTitle) {
-        sisterTitle.textContent = translations[lang].sisterProjectsTitle;
-      }
-
-      const sandataDesc = document.getElementById('sandata-desc');
-      if (sandataDesc) {
-        sandataDesc.textContent = translations[lang].sandataDesc;
-      }
     });
   </script>
-</head>
-<body>
-  <button id="theme-toggle" class="theme-toggle">Mod dəyiş</button>
-
-  <div class="container">
-    <div class="logo">
-      <img src="https://static.wikitide.net/sanarsivwiki/7/75/Sanarchive_logo_tr_%28new%29.svg" alt="Sanarşiv Logo" />
-    </div>
-    <h1>Sanarşiv – Dil seçin</h1>
-
-    <div class="popular-langs" aria-label="Diller">
-      <div class="lang-box">
-        <a href="https://az.sanarsiv.org">Azərbaycan dili</a>
-        <div class="article-count">...</div>
-      </div>
-      <div class="lang-box">
-        <a href="https://tr.sanarsiv.org">Türkçe</a>
-        <div class="article-count">...</div>
-      </div>
-      <div class="lang-box">
-        <a href="https://en.sanarsiv.org">İngilizce</a>
-        <div class="article-count">...</div>
-      </div>
-    </div>
-
-    <div class="sister-projects">
-      <h2 id="sister-title">Kardeş projeler</h2>
-      <div class="project-item">
-        <div class="project-icon">
-          <svg width="36" height="36" viewBox="0 0 24 24" fill="currentColor" xmlns="https://static.wikitide.net/sanarsivwiki/6/6a/Sandata_logo_with_wordmark.svg">
-            <path d="M4 4H20V6H4V4ZM4 9H20V11H4V9ZM4 14H20V16H4V14ZM4 19H14V21H4V19Z"/>
-          </svg>
-        </div>
-        <div class="project-content">
-          <a href="https://sandata.org" class="project-link">Sandata</a>
-          <div class="project-desc" id="sandata-desc">Özgür Sanat veri merkezi</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <footer>
-    Sanarşiv – Azad incəsənət ensiklopediyası
-  </footer>
 </body>
 </html>
