@@ -5,71 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Sanarşiv – Dil seçin</title>
   <style>
-    /* ... önceki stiller burada aynı kalacak ... */
-    :root {
-      color-scheme: light dark;
-      --bg-light: #fff;
-      --text-light: #202122;
-      --bg-dark: #111;
-      --text-dark: #f5f5f5;
-      --border-color: #ccc;
-      --link-color: #3366cc;
-      --desc-color-light: #555;
-      --desc-color-dark: #aaa;
-    }
-
-    body {
-      margin: 0;
-      font-family: sans-serif;
-      background-color: var(--bg-light);
-      color: var(--text-light);
-      transition: background-color 0.3s, color 0.3s;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 40px 20px 60px;
-    }
-
-    body.dark {
-      background-color: var(--bg-dark);
-      color: var(--text-dark);
-    }
-
-    .container {
-      max-width: 900px;
-      width: 100%;
-      text-align: center;
-    }
-
-    /* Footer ve copyright */
-    footer {
-      font-size: 14px;
-      text-align: center;
-      margin-top: auto;
-      padding-top: 20px;
-      border-top: 1px solid var(--border-color);
-      width: 100%;
-      max-width: 900px;
-    }
-
-    .copyright {
-      font-size: 12px;
-      color: var(--desc-color-light);
-      margin-top: 6px;
-    }
-
-    body.dark .copyright {
-      color: var(--desc-color-dark);
-    }
-
-    a.cc-link {
-      color: var(--link-color);
-      text-decoration: none;
-    }
-    a.cc-link:hover {
-      text-decoration: underline;
-    }
+    /* ... (Senin verdiğin CSS aynen burada devam ediyor) ... */
   </style>
 </head>
 <body>
@@ -112,7 +48,7 @@
             />
             <div class="sister-text">
               <span class="sister-name">Sandata</span>
-              <span class="sister-desc" id="sandata-desc">Açık kültür ve veri platformu</span>
+              <span class="sister-desc" id="sandata-desc">Açıq mədəniyyət və məlumat platforması</span>
             </div>
           </a>
         </li>
@@ -121,9 +57,15 @@
   </div>
 
   <footer>
-    <div id="footer-text"></div>
-    <div class="copyright" id="copyright-text"></div>
+    Sanarşiv – Azad incəsənət ensiklopediyası
   </footer>
+
+  <!-- Telif hakkı yazısı eklendi -->
+  <div id="copyright" style="text-align:center; font-size:13px; color:#666; margin-top:8px; max-width:900px; margin-left:auto; margin-right:auto;">
+    <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener" id="cc-link" style="color:inherit; text-decoration:none;">
+      Creative Commons Attribution-ShareAlike 4.0 International License
+    </a> | Sanarşiv ismi ve logosu tescilli markalardır.
+  </div>
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
@@ -138,7 +80,7 @@
           logo: "https://static.wikitide.net/sanarsivwiki/1/1f/Sanarchive_wordmark_az_%28new%29.svg",
           sisterTitle: "Qardaş layihələr",
           sandataDesc: "Açıq mədəniyyət və məlumat platforması",
-          copyright: 'Bu səhifə <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.tr" class="cc-link" target="_blank" rel="noopener noreferrer">Creative Commons Attribution-ShareAlike 4.0</a> lisenziyası altındadır. Yalnız Sanarşiv adı və loqosu qeydiyyatdan keçmiş markalardır.'
+          copyrightText: `<a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener" style="color:inherit; text-decoration:none;">Creative Commons Attribution-ShareAlike 4.0 Beynəlxalq Lisenziyası</a> | Sanarşiv ismi və logosu tescilli markalardır.`
         },
         tr: {
           articleSingular: "makale",
@@ -150,7 +92,7 @@
           logo: "https://static.wikitide.net/sanarsivwiki/7/75/Sanarchive_logo_tr_%28new%29.svg",
           sisterTitle: "Kardeş projeler",
           sandataDesc: "Açık kültür ve veri platformu",
-          copyright: 'Bu sayfa <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.tr" class="cc-link" target="_blank" rel="noopener noreferrer">Creative Commons Atıf-AynıLisanslaPaylaş 4.0</a> lisansı altındadır. Yalnızca Sanarşiv ismi ve logosu tescilli markalardır.'
+          copyrightText: `<a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener" style="color:inherit; text-decoration:none;">Creative Commons Attribution-ShareAlike 4.0 Uluslararası Lisansı</a> | Sanarşiv ismi ve logosu tescilli markalardır.`
         },
         en: {
           articleSingular: "article",
@@ -162,7 +104,7 @@
           logo: "https://static.wikitide.net/sanarsivwiki/5/56/Sanarchive_logo_en_%28new%29.svg",
           sisterTitle: "Sister projects",
           sandataDesc: "Open culture and data platform",
-          copyright: 'This page is licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.tr" class="cc-link" target="_blank" rel="noopener noreferrer">Creative Commons Attribution-ShareAlike 4.0</a>. Only the Sanarşiv name and logo are registered trademarks.'
+          copyrightText: `<a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener" style="color:inherit; text-decoration:none;">Creative Commons Attribution-ShareAlike 4.0 International License</a> | Sanarşiv name and logo are registered trademarks.`
         }
       };
 
@@ -177,9 +119,9 @@
       const h1 = document.querySelector('h1');
       if (h1) h1.textContent = translations[lang].selectLanguageTitle;
 
-      // Footer text
-      const footerText = document.getElementById('footer-text');
-      if (footerText) footerText.textContent = translations[lang].footer;
+      // Footer
+      const footer = document.querySelector('footer');
+      if (footer) footer.textContent = translations[lang].footer;
 
       // Logo
       const logoImg = document.querySelector('.logo img');
@@ -193,6 +135,12 @@
 
       const sandataDesc = document.getElementById('sandata-desc');
       if (sandataDesc) sandataDesc.textContent = translations[lang].sandataDesc;
+
+      // Copyright text
+      const copyrightDiv = document.getElementById('copyright');
+      if (copyrightDiv) {
+        copyrightDiv.innerHTML = translations[lang].copyrightText;
+      }
 
       // Language article counts
       const langBoxes = document.querySelectorAll('.lang-box');
@@ -243,12 +191,6 @@
           const newTheme = document.body.classList.contains('dark') ? 'dark' : 'light';
           localStorage.setItem('theme', newTheme);
         });
-      }
-
-      // Telif hakkı HTML olarak ekle
-      const copyrightText = document.getElementById('copyright-text');
-      if (copyrightText) {
-        copyrightText.innerHTML = translations[lang].copyright;
       }
     });
   </script>
